@@ -1,0 +1,28 @@
+<svg width="251" height="280" viewBox="0 0 251 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_12_56)">
+<path d="M239.938 129.325C239.938 194.66 207.938 256.125 128.469 256.125C49 256.125 17 194.657 17 129.325C17 38.1252 66.9063 57.9088 128.469 57.9088C190.031 57.9088 239.938 28.47 239.938 129.325Z" fill="url(#paint0_linear_12_56)"/>
+<path d="M93 191.625C91.5 186.125 108.251 197.493 133.103 197.603C157.956 197.712 175.5 186.952 175.5 190.625C175.5 194.299 157.932 203.212 133.079 203.103C108.227 202.993 93.889 194.885 93 191.625Z" fill="black"/>
+<path d="M170.062 69.6247C170.062 72.9384 151.93 75.6247 129.562 75.6247C107.195 75.6247 89.0623 72.9384 89.0623 69.6247C89.0623 66.311 107.757 69.1247 130.125 69.1247C152.492 69.1247 170.062 66.311 170.062 69.6247Z" fill="#272525"/>
+<path d="M97.9558 8.64725L107.07 4.99994L118.189 27.5117L130.435 54.0334L132.513 68.58L134.438 69.6254L126.474 70.6254L128.133 66.5629L126.474 53.2089L117.172 32.5677L110.486 22.4629L105.548 13.668L97.9558 8.64725Z" fill="#272525"/>
+<ellipse cx="79" cy="154.125" rx="5" ry="17.5" fill="black"/>
+<ellipse cx="183" cy="154.125" rx="5" ry="17.5" fill="black"/>
+<path d="M206.339 80.4302C210.69 88.2658 211.402 96.1808 207.93 98.1087C204.458 100.037 207.863 88.816 203.512 80.9804C199.161 73.1447 188.702 71.6612 192.174 69.7333C195.646 67.8054 201.988 72.5946 206.339 80.4302Z" fill="#D9D9D9"/>
+</g>
+<defs>
+<filter id="filter0_d_12_56" x="0" y="0" width="250.938" height="279.125" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-3" dy="9"/>
+<feGaussianBlur stdDeviation="7"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_12_56"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12_56" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_12_56" x1="269" y1="6.12536" x2="32.5" y2="285.625" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDBD5C"/>
+<stop offset="0.673077" stop-color="#E68D06"/>
+<stop offset="1" stop-color="#B3720F"/>
+</linearGradient>
+</defs>
+</svg>
