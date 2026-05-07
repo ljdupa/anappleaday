@@ -1,5 +1,4 @@
 import Taskbar from "./SharedTaskbar";
-import Avatar from "../../imports/Avatar/Avatar";
 
 interface JournalEntry {
   id: string;
@@ -12,20 +11,15 @@ interface JournalEntry {
 interface ProfileScreenProps {
   userName: string;
   entries: JournalEntry[];
+  userAvatar: string;
+  avatarBg: string;
   onNavigateToHome: () => void;
   onNavigateToFriends: () => void;
   onNavigateToJournal: () => void;
   onNavigateToLogMood: () => void;
   onNavigateToProfile: () => void;
+  onNavigateToCustomize: () => void;
 }
-
-const moodColors: Record<string, string> = {
-  rotten: "#3C3F3F",
-  bad: "#836F49",
-  okay: "#F0D418",
-  good: "#E68D06",
-  great: "#E03838",
-};
 
 const getMoodApple = (mood: string) => {
   switch (mood) {
@@ -41,11 +35,14 @@ const getMoodApple = (mood: string) => {
 export default function ProfileScreen({
   userName,
   entries,
+  userAvatar,
+  avatarBg,
   onNavigateToHome,
   onNavigateToFriends,
   onNavigateToJournal,
   onNavigateToLogMood,
   onNavigateToProfile,
+  onNavigateToCustomize,
 }: ProfileScreenProps) {
   const cabin = { fontFamily: "Cabin Condensed, sans-serif" };
   const cabinBold = { fontFamily: "Cabin Condensed, sans-serif", fontWeight: 700 };
@@ -56,20 +53,31 @@ export default function ProfileScreen({
       {/* Cream background bottom */}
       <div className="absolute left-0 right-0 rounded-[2px] bottom-0 bg-[#B3BA5D]" style={{ top: "420px" }} />
 
-      {/* Profile card — compact like reference */}
+      {/* Profile card */}
       <div
         className="absolute bg-[#f3efd4] rounded-[20px] shadow-lg"
         style={{ left: "60px", right: "60px", top: "40px", padding: "16px" }}
       >
-{/* Avatar inside blue rounded box */}
-<div
-  className="rounded-[16px] overflow-hidden flex items-end justify-center mb-[12px]"
-  style={{ backgroundColor: "#C7DCEC", height: "220px" }}
->
-  <div style={{ width: "90px", height: "105px", transform: "scale(1.8)", transformOrigin: "bottom center" }}>
-    <Avatar />
-  </div>
-</div>
+        {/* Edit button */}
+        <button
+          onClick={onNavigateToCustomize}
+          className="absolute top-[325px] right-[12px] bg-[#EC9808] text-white text-[12px] px-3 py-1 rounded-[6px] z-10"
+          style={cabinBold}
+        >
+          edit
+        </button>
+
+        {/* Avatar */}
+        <div
+          className="rounded-[16px] overflow-hidden flex items-center justify-center mb-[12px]"
+          style={{ backgroundColor: avatarBg, height: "220px" }}
+        >
+          <img
+            src={userAvatar}
+            alt="avatar"
+            className="w-[160px] h-[160px] object-contain"
+          />
+        </div>
 
         {/* Name */}
         <p style={{ ...cabinBold, fontSize: "22px", color: "#394648", textAlign: "center" }}
@@ -77,7 +85,7 @@ export default function ProfileScreen({
           {userName}
         </p>
 
-         {/* Stats row */}
+        {/* Stats row */}
         <div className="flex justify-center gap-[48px]">
           <div className="flex flex-col items-center">
             <p style={{ ...cabinBold, fontSize: "24px", color: "#394648" }}>{entries.length}</p>
@@ -120,7 +128,6 @@ export default function ProfileScreen({
                 onClick={onNavigateToJournal}
                 className="w-full bg-[#f3efd4] rounded-[16px] p-[14px] flex gap-[12px] items-center text-left"
               >
-                {/* Apple icon */}
                 <img
                   src={getMoodApple(entry.mood)}
                   className="w-[48px] h-[48px] shrink-0 object-contain"
@@ -149,6 +156,7 @@ export default function ProfileScreen({
           onNavigateToJournal={onNavigateToJournal}
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

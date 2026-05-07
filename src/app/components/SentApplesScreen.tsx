@@ -7,12 +7,13 @@ interface SentApplesScreenProps {
   onNavigateToLogMood: () => void;
   onNavigateToProfile: () => void;
   onNavigateToReceivedApples: () => void;
+  userAvatar?: string;
 }
 
 const sentApples = [
   { id: '1', date: 'Sat, May 2', username: 'amy2321', message: 'make sure to hydrate!' },
   { id: '2', date: 'Sun, May 3', username: 'janesdoes781', message: 'love you!' },
-  { id: '3', date: 'Sun, May 3', username: 'jaon2278', message: 'you’ve been doing really well!' },
+{ id: '3', date: 'Sun, May 3', username: 'jaon2278', message: "you've been doing really well!" },
   { id: '4', date: 'Sun, May 3', username: 'Jakey306', message: 'make sure to hydrate!' },
   { id: '5', date: 'Mon, May 4', username: 'GinaLin2015', message: 'make sure to hydrate!' },
   { id: '6', date: 'Mon, May 4', username: 'pamwig', message: 'I hope you feel better!' },
@@ -24,7 +25,6 @@ const getAvatarIcon = (username: string, index: number) => {
   return `/figma-screens/icon${iconNumber}.svg`;
 };
 
-
 export default function SentApplesScreen({
   onNavigateToHome,
   onNavigateToFriends,
@@ -32,6 +32,7 @@ export default function SentApplesScreen({
   onNavigateToLogMood,
   onNavigateToProfile,
   onNavigateToReceivedApples,
+  userAvatar,
 }: SentApplesScreenProps) {
   return (
     <div className="relative h-[852px] w-[393px] mx-auto bg-[#bac15b] overflow-hidden">
@@ -54,7 +55,7 @@ export default function SentApplesScreen({
       <div className="absolute inset-x-0 top-[120px] bottom-[72px] bg-[#f3efd4] px-[20px] pb-[20px] pt-[18px] overflow-y-auto">
         <div className="rounded-[18px] bg-[#F8D150] px-[16px] py-[14px] shadow-[0px_4px_10px_rgba(0,0,0,0.12)]">
           <p className="text-[14px] font-[700] text-[#394648]" style={{ fontFamily: 'Cabin Condensed, sans-serif' }}>
-            You’ve sent 7 apples this week!
+            You've sent 7 apples this week!
           </p>
         </div>
 
@@ -89,7 +90,6 @@ export default function SentApplesScreen({
         </div>
       </div>
 
-      {/* Taskbar */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-[72px] z-50">
         <SharedTaskbar
           onNavigateToHome={onNavigateToHome}
@@ -97,6 +97,7 @@ export default function SentApplesScreen({
           onNavigateToJournal={onNavigateToJournal}
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

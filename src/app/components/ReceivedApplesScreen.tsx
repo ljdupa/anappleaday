@@ -7,6 +7,7 @@ interface ReceivedApplesScreenProps {
   onNavigateToLogMood: () => void;
   onNavigateToProfile: () => void;
   onNavigateToSentApples: () => void;
+  userAvatar?: string;
 }
 
 const receivedApples = [
@@ -31,6 +32,7 @@ export default function ReceivedApplesScreen({
   onNavigateToLogMood,
   onNavigateToProfile,
   onNavigateToSentApples,
+  userAvatar,
 }: ReceivedApplesScreenProps) {
   return (
     <div className="relative h-[852px] w-[393px] mx-auto bg-[#bac15b] overflow-hidden">
@@ -88,7 +90,6 @@ export default function ReceivedApplesScreen({
         </div>
       </div>
 
-      {/* Taskbar */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-[72px] z-50">
         <SharedTaskbar
           onNavigateToHome={onNavigateToHome}
@@ -96,6 +97,7 @@ export default function ReceivedApplesScreen({
           onNavigateToJournal={onNavigateToJournal}
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

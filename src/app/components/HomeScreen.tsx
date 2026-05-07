@@ -17,6 +17,7 @@ interface HomeScreenProps {
   onNavigateToReceivedApples: () => void;
   onNavigateToSentApples: () => void;
   receivedApples: Array<{ color: string; from: string; date: string }>;
+  userAvatar?: string;
 }
 
 export default function HomeScreen({
@@ -28,6 +29,8 @@ export default function HomeScreen({
   onNavigateToProfile,
   onNavigateToReceivedApples,
   onNavigateToSentApples,
+  receivedApples,
+  userAvatar,
 }: HomeScreenProps) {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
@@ -68,7 +71,7 @@ export default function HomeScreen({
         style={{ borderTopLeftRadius: '30px', borderTopRightRadius: '30px' }}
       />
 
-      {/* Scrollable content — always at 273px */}
+      {/* Scrollable content */}
       <div
         className="absolute left-0 right-0 overflow-y-auto pb-[16px] bg-[#f3efd4] w-full"
         style={{ top: "273px", height: "calc(852px - 273px - 72px)" }}
@@ -81,9 +84,9 @@ export default function HomeScreen({
         </div>
         <div className="relative mb-[32px]">
           <p style={cabinBold} className="absolute text-[16px] text-black left-[40px] top-[-18px] whitespace-nowrap">Received apples</p>
-          <button onClick={onNavigateToReceivedApples} className="w-full h-[215px] max-w-[333px] mt-[10px] mx-[30px] bg-transparent border-0 p-0">
-            <ReceivedApplesBasket />
-          </button>
+<button onClick={onNavigateToReceivedApples} className="w-full h-[215px] max-w-[333px] mt-[10px] mx-[30px] border-0 p-0 rounded-[18px] overflow-hidden" style={{ backgroundColor: '#C7CF5D' }}>
+  <ReceivedApplesBasket hasApples={receivedApples.length > 0} />
+</button>
         </div>
         <div className="relative mb-[8px]">
           <p style={cabinBold} className="absolute text-[16px] text-black left-[40px] top-[-18px] whitespace-nowrap">Sent apples</p>
@@ -93,7 +96,7 @@ export default function HomeScreen({
         </div>
       </div>
 
-      {/* Calendar — overlays content */}
+      {/* Calendar */}
       <div className="absolute top-[165px] left-0 right-0 z-40 w-full">
         {isCalendarOpen ? (
           <div className="relative w-full" style={{ borderTopLeftRadius: '30px', borderTopRightRadius: '30px', overflow: 'hidden' }}>
@@ -182,6 +185,7 @@ export default function HomeScreen({
           onNavigateToJournal={onNavigateToJournal}
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

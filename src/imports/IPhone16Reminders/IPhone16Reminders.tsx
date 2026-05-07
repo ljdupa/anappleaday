@@ -52,7 +52,10 @@ function Apple() {
           <path d={svgPaths.p3c274800} fill="var(--fill-0, #413333)" id="Ellipse 71" />
         </svg>
       </div>
-      <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[278.5px] not-italic text-[20px] text-black text-center top-[326px] tracking-[3px] whitespace-nowrap">Custom</p>
+      <p className="-translate-x-1/2 absolute leading-[normal] left-[278.5px] not-italic text-[20px] text-black text-center top-[326px] tracking-[3px] whitespace-nowrap"
+        style={{ fontFamily: 'Cabin Condensed, sans-serif', fontWeight: 900 }}>
+        Custom
+      </p>
       <div className="absolute flex h-[22.38px] items-center justify-center left-[267.05px] top-[210px] w-[13.599px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
         <div className="flex-none rotate-[-16.11deg]">
           <div className="h-[20.954px] relative w-[8.102px]">
@@ -102,7 +105,10 @@ function Group() {
 function Motivate() {
   return (
     <div className="absolute contents left-[-14.92px] top-[238px]" data-name="motivate">
-      <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[79.33px] not-italic text-[20px] text-black text-center top-[314.5px] tracking-[4.4px] whitespace-nowrap">Encourage</p>
+      <p className="-translate-x-1/2 absolute leading-[normal] left-[79.33px] not-italic text-[20px] text-black text-center top-[324px] tracking-[3.0px] whitespace-nowrap"
+        style={{ fontFamily: 'Cabin Condensed, sans-serif', fontWeight: 900 }}>
+        Encourage
+      </p>
       <div className="absolute flex h-[48.328px] items-center justify-center left-[-14.92px] top-[238px] w-[38.693px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
         <div className="flex-none rotate-[20.78deg]">
           <div className="h-[42.04px] relative w-[25.432px]">
@@ -289,8 +295,14 @@ function IconBoxes() {
       <Motivate />
       <Remind />
       <Hydrate />
-      <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[278px] not-italic text-[20px] text-black text-center top-[136px] tracking-[4.4px] whitespace-nowrap">Remind</p>
-      <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[85px] not-italic text-[20px] text-black text-center top-[136px] tracking-[4.4px] whitespace-nowrap">Check Up</p>
+      <p className="-translate-x-1/2 absolute leading-[normal] left-[278px] not-italic text-[20px] text-black text-center top-[138px] tracking-[4.4px] whitespace-nowrap"
+        style={{ fontFamily: 'Cabin Condensed, sans-serif', fontWeight: 900 }}>
+        Remind
+      </p>
+      <p className="-translate-x-1/2 absolute leading-[normal] left-[85px] not-italic text-[20px] text-black text-center top-[136px] tracking-[3.4px] whitespace-nowrap"
+        style={{ fontFamily: 'Cabin Condensed, sans-serif', fontWeight: 900 }}>
+        Check Up
+      </p>
     </div>
   );
 }

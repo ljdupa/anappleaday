@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 
+import BeginScreen from "./components/BeginScreen";
 import IPhone16Startscreen from "../imports/IPhone16Startscreen/IPhone16Startscreen";
 import SignUpScreen from "./components/SignUpScreen";
 import SignInScreen from "./components/SignInScreen";
@@ -17,6 +18,8 @@ import CustomScreen from "./components/CustomScreen";
 import ProfileScreen from "./components/ProfileScreen";
 import ReceivedApplesScreen from "./components/ReceivedApplesScreen";
 import SentApplesScreen from "./components/SentApplesScreen";
+import AvatarCustomizeScreen from "./components/AvatarCustomizeScreen";
+
 
 import IPhone16Apple1 from "../imports/IPhone16Apple1/IPhone16Apple1";
 import IPhone16Apple2 from "../imports/IPhone16Apple2/IPhone16Apple2";
@@ -28,12 +31,12 @@ type AppleType = "rotten" | "bad" | "okay" | "good" | "great";
 type AppleNextScreen = "home" | "createEntry";
 
 type ScreenType =
-  | "start" | "signIn" | "signUp" | "chooseApple"
+  | "begin" | "start" | "signIn" | "signUp" | "chooseApple"
   | "rotten" | "bad" | "okay" | "good" | "great"
   | "home" | "emptyfriends" | "journal" | "createEntry"
   | "addFriends" | "reminders"
   | "checkUp" | "remind" | "encourage" | "custom" | "profile"
-  | "receivedApples" | "sentApples";
+  | "receivedApples" | "sentApples" | "customize";
 
 interface JournalEntry {
   id: string;
@@ -69,13 +72,18 @@ function AppleScreen({
 }
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<ScreenType>("start");
+  
+  const [currentScreen, setCurrentScreen] = useState<ScreenType>("begin");
   const [selectedMood, setSelectedMood] = useState<AppleType>("great");
   const [userName, setUserName] = useState("Lauren");
+  const [userAvatar, setUserAvatar] = useState('/figma-screens/icon5.svg');
+  const [avatarBg, setAvatarBg] = useState('#C7DCEC');
   const appleNextScreenRef = useRef<AppleNextScreen>("home");
   const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
   const [selectedFriendsForReminder, setSelectedFriendsForReminder] = useState<string[]>([]);
-  const [receivedApples] = useState<Array<{ color: string; from: string; date: string }>>([]);
+const [receivedApples] = useState<Array<{ color: string; from: string; date: string }>>([
+  { color: 'red', from: 'amy2321', date: 'May 6' },
+]);
 
   const handleSignIn = () => setCurrentScreen("signIn");
 
@@ -113,6 +121,7 @@ export default function App() {
     onNavigateToLogMood: navToLogMood,
     onNavigateToFriends: () => setCurrentScreen("emptyfriends"),
     onNavigateToProfile: () => setCurrentScreen("profile"),
+    userAvatar: userAvatar,
   };
 
   const handleAppleSetMood = () => setCurrentScreen(appleNextScreenRef.current);
@@ -120,6 +129,10 @@ export default function App() {
   return (
     <div className="size-full flex items-center justify-center bg-gray-900">
       <div className="w-[393px] h-[852px] relative overflow-hidden shadow-2xl rounded-[40px]">
+
+      {currentScreen === "begin" && (
+  <BeginScreen onGetStarted={() => setCurrentScreen("start")} />
+)}
 
         {currentScreen === "start" && (
           <IPhone16Startscreen onSignIn={handleSignIn} onSignUp={() => setCurrentScreen("signUp")} />
@@ -176,6 +189,7 @@ export default function App() {
             onNavigateToReceivedApples={() => setCurrentScreen("receivedApples")}
             onNavigateToSentApples={() => setCurrentScreen("sentApples")}
             receivedApples={receivedApples}
+            userAvatar={userAvatar}
           />
         )}
 
@@ -183,11 +197,29 @@ export default function App() {
           <ProfileScreen
             userName={userName}
             entries={journalEntries}
+            userAvatar={userAvatar}
+            avatarBg={avatarBg}
             onNavigateToHome={() => setCurrentScreen("home")}
             onNavigateToFriends={() => setCurrentScreen("emptyfriends")}
             onNavigateToJournal={() => setCurrentScreen("journal")}
             onNavigateToLogMood={navToLogMood}
             onNavigateToProfile={() => setCurrentScreen("profile")}
+            onNavigateToCustomize={() => setCurrentScreen("customize")}
+          />
+        )}
+
+        {currentScreen === "customize" && (
+          <AvatarCustomizeScreen
+            currentAvatar={userAvatar}
+            currentName={userName}
+            currentBg={avatarBg}
+            onBack={() => setCurrentScreen("profile")}
+            onSave={(avatar, name, bg) => {
+              setUserAvatar(avatar);
+              setAvatarBg(bg);
+              if (name) setUserName(name);
+              setCurrentScreen("profile");
+            }}
           />
         )}
 
@@ -202,6 +234,7 @@ export default function App() {
               setCurrentScreen("reminders");
             }}
             onNavigateToProfile={() => setCurrentScreen("profile")}
+            userAvatar={userAvatar}
           />
         )}
 
@@ -277,6 +310,7 @@ export default function App() {
                 prev.map(e => e.id === id ? { ...e, title, content, mood } : e)
               );
             }}
+            userAvatar={userAvatar}
           />
         )}
 
@@ -297,6 +331,7 @@ export default function App() {
             onNavigateToLogMood={navToLogMood}
             onNavigateToProfile={() => setCurrentScreen("profile")}
             onNavigateToSentApples={() => setCurrentScreen("sentApples")}
+            userAvatar={userAvatar}
           />
         )}
 
@@ -308,6 +343,7 @@ export default function App() {
             onNavigateToLogMood={navToLogMood}
             onNavigateToProfile={() => setCurrentScreen("profile")}
             onNavigateToReceivedApples={() => setCurrentScreen("receivedApples")}
+            userAvatar={userAvatar}
           />
         )}
 

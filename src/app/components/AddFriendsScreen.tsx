@@ -2,9 +2,9 @@ import { useState } from 'react';
 import SharedTaskbar from './SharedTaskbar';
 
 const INITIAL_REQUESTS = [
-  { id: '1', username: 'amy2321', icon: '/figma-screens/icon1.svg' },
+  { id: '1', username: 'amy2321', icon: '/figma-screens/icon7.svg' },
   { id: '2', username: 'janesdoes781', icon: '/figma-screens/icon2.svg' },
-  { id: '3', username: 'jaondoes781', icon: '/figma-screens/icon3.svg' },
+  { id: '3', username: 'jaondoes781', icon: '/figma-screens/icon6.svg' },
   { id: '4', username: 'jaondoes22781', icon: '/figma-screens/icon4.svg' },
 ];
 
@@ -14,6 +14,8 @@ const AVATAR_ICONS = [
   '/figma-screens/icon3.svg',
   '/figma-screens/icon4.svg',
   '/figma-screens/icon5.svg',
+  '/figma-screens/icon6.svg',
+  '/figma-screens/icon7.svg',
 ];
 
 const FRIENDS_LIST = [
@@ -45,6 +47,7 @@ interface AddFriendsScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function AddFriendsScreen({
@@ -55,6 +58,7 @@ export default function AddFriendsScreen({
   onNavigateToLogMood,
   onNavigateToFriends,
   onNavigateToProfile,
+  userAvatar
 }: AddFriendsScreenProps) {
   const [requests, setRequests] = useState(INITIAL_REQUESTS);
   const [searchText, setSearchText] = useState('');
@@ -227,6 +231,8 @@ export default function AddFriendsScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
+
         />
       </div>
     </div>

@@ -9,6 +9,7 @@ interface CustomScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function CustomScreen({
@@ -19,6 +20,7 @@ export default function CustomScreen({
   onNavigateToLogMood,
   onNavigateToFriends,
   onNavigateToProfile,
+  userAvatar
 }: CustomScreenProps) {
   const [customMessage, setCustomMessage] = useState('');
 
@@ -85,6 +87,7 @@ export default function CustomScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

@@ -1,4 +1,21 @@
-export default function ReceivedApplesBasket() {
+interface ReceivedApplesBasketProps {
+  hasApples?: boolean;
+}
+
+export default function ReceivedApplesBasket({ hasApples = false }: ReceivedApplesBasketProps) {
+if (hasApples) {
+  return (
+    <div className="relative size-full flex items-center justify-center">
+      <img
+        src="/figma-screens/fullbasket.svg"
+        className="w-[80%] h-[225%] object-contain"
+        style={{ marginTop: '2px' }}
+        alt="basket with apples"
+      />
+    </div>
+  );
+}
+
   return (
     <div className="relative size-full">
       <svg className="block size-full" viewBox="0 0 341 223" fill="none" xmlns="http://www.w3.org/2000/svg">

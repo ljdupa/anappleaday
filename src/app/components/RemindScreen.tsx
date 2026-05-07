@@ -9,6 +9,7 @@ interface RemindScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function RemindScreen({
@@ -18,7 +19,7 @@ export default function RemindScreen({
   onNavigateToJournal,
   onNavigateToLogMood,
   onNavigateToFriends,
-  onNavigateToProfile,
+  onNavigateToProfile, userAvatar
 }: RemindScreenProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -88,6 +89,7 @@ export default function RemindScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

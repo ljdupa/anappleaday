@@ -9,6 +9,7 @@ interface EncourageScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function EncourageScreen({
@@ -18,7 +19,7 @@ export default function EncourageScreen({
   onNavigateToJournal,
   onNavigateToLogMood,
   onNavigateToFriends,
-  onNavigateToProfile,
+  onNavigateToProfile, userAvatar
 }: EncourageScreenProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -88,6 +89,7 @@ export default function EncourageScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

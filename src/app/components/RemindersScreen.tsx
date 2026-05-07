@@ -14,13 +14,14 @@ interface RemindersScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function RemindersScreen({
   onSend, onBack, selectedFriends,
   onNavigateToCheckUp, onNavigateToRemind, onNavigateToEncourage, onNavigateToCustom,
   onNavigateToHome, onNavigateToJournal, onNavigateToLogMood, onNavigateToFriends,
-  onNavigateToProfile,
+  onNavigateToProfile, userAvatar,
 }: RemindersScreenProps) {
   const reminders = [
     { id: 'check-up', name: 'Check Up', position: { left: 13, top: 232 }, onNavigate: onNavigateToCheckUp },
@@ -64,7 +65,6 @@ export default function RemindersScreen({
         ← back
       </button>
 
-      {/* Global taskbar — pinned to bottom */}
       <div className="absolute bottom-0 left-0 w-full h-[72px] z-30">
         <SharedTaskbar
           onNavigateToHome={onNavigateToHome}
@@ -72,6 +72,7 @@ export default function RemindersScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

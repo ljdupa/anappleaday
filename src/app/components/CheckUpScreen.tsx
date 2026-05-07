@@ -9,6 +9,7 @@ interface CheckUpScreenProps {
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function CheckUpScreen({
@@ -18,7 +19,7 @@ export default function CheckUpScreen({
   onNavigateToJournal,
   onNavigateToLogMood,
   onNavigateToFriends,
-  onNavigateToProfile,
+  onNavigateToProfile, userAvatar
 }: CheckUpScreenProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -89,6 +90,7 @@ export default function CheckUpScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToFriends={onNavigateToFriends}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

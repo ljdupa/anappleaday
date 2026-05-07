@@ -1,264 +1,224 @@
-import { useState } from "react";
-import EmptySearch from "../../imports/IPhone1619/IPhone1619";
-import svgPaths from "../../imports/IPhone1617-1/svg-bxwk3f00lr";
-import taskbarSvgPaths from "../../imports/IPhone16Landingofficial-3/svg-im0bd7ybth";
+import { useState } from 'react';
+import SharedTaskbar from './SharedTaskbar';
 
-const FRIENDS_LIST = [
-  "Amelie312",
-  "Amelie3122",
-  "Amelie3124",
-  "Amelie3125",
-  "Amelie3126",
-  "Amelie3127",
-  "Amelie3128",
-  "Amelie3129",
+const INITIAL_REQUESTS = [
+  { id: '1', username: 'amy2321', icon: '/figma-screens/icon1.svg' },
+  { id: '2', username: 'janesdoes781', icon: '/figma-screens/icon2.svg' },
+  { id: '3', username: 'jaondoes781', icon: '/figma-screens/icon3.svg' },
+  { id: '4', username: 'jaondoes22781', icon: '/figma-screens/icon4.svg' },
 ];
 
-function FriendAvatar() {
-  return (
-    <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 41.9996 48.8715">
-      <g>
-        <rect fill="#B1AE68" height="30.6285" rx="7" width="35.1532" x="3.53825" y="17.1988" />
-        <path d={svgPaths.p38616080} fill="#8C704E" />
-        <path d={svgPaths.pd178270} fill="#D8C59D" />
-        <path d={svgPaths.p2191ea00} fill="#B0AE68" />
-        <path d={svgPaths.p202e0100} fill="#B0AE68" />
-        <path d={svgPaths.p2f907b80} fill="#5B4A36" />
-        <path d={svgPaths.pa91d670} fill="#726058" />
-        <ellipse cx="14.4444" cy="22.9552" fill="black" rx="0.962963" ry="1.5867" />
-        <ellipse cx="27.9257" cy="22.9552" fill="black" rx="0.962963" ry="1.5867" />
-        <path d={svgPaths.p20c0c080} fill="black" />
-        <rect fill="#D8C59D" height="4.23121" width="5.77778" x="18.2963" y="29.8309" />
-        <path d={svgPaths.p18ff2080} fill="#8CA179" stroke="black" strokeWidth="0.1" />
-        <rect fill="#726058" height="3.17341" width="1.92593" x="15.4073" y="36.1778" />
-        <rect fill="#726058" height="3.17341" width="1.92593" x="25.0369" y="36.1778" />
-        <rect fill="#726058" height="9.52022" width="17.3333" x="12.5184" y="39.3512" />
-      </g>
-    </svg>
-  );
-}
+const AVATAR_ICONS = [
+  '/figma-screens/icon1.svg',
+  '/figma-screens/icon2.svg',
+  '/figma-screens/icon3.svg',
+  '/figma-screens/icon4.svg',
+  '/figma-screens/icon5.svg',
+];
 
-function Taskbar({
-  onNavigateToHome,
-  onNavigateToJournal,
-  onNavigateToLogMood,
-  onNavigateToFriends,
-}: {
-  onNavigateToHome: () => void;
-  onNavigateToJournal: () => void;
-  onNavigateToLogMood: () => void;
-  onNavigateToFriends: () => void;
-}) {
-  return (
-    <div className="absolute content-stretch flex gap-[30px] items-center left-[22px] top-[793px] z-50">
-      <button onClick={onNavigateToHome} className="relative shrink-0 size-[45.962px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 45.9623 45.9623">
-          <circle cx="22.9812" cy="22.9812" fill="#EC9808" r="22.9811" />
-          <path d={taskbarSvgPaths.p2442c000} fill="white" />
-          <rect fill="white" height="13.1321" width="5.4717" x="14.2264" y="19.698" />
-          <rect fill="white" height="13.1321" width="5.4717" x="26.2641" y="19.698" />
-        </svg>
-      </button>
+const FRIENDS_LIST = [
+  "Amelie312", "Amelie3122", "Amelie3124", "Amelie3125",
+  "Amelie3126", "Amelie3127", "Amelie3128", "Amelie3129",
+];
 
-      <button onClick={onNavigateToFriends} className="relative shrink-0 size-[45.962px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 45.9623 45.9623">
-          <circle cx="22.9811" cy="22.9812" fill="#EC9808" r="22.9811" />
-          <circle cx="16.9623" cy="16.9622" fill="white" r="4.92453" />
-          <path d={taskbarSvgPaths.p2ebd1b00} fill="white" />
-          <circle cx="29.0001" cy="16.9622" fill="white" r="4.92453" />
-          <path d={taskbarSvgPaths.p4979600} fill="white" />
-        </svg>
-      </button>
+const FRIEND_ICONS: Record<string, string> = {};
+FRIENDS_LIST.forEach((name, i) => {
+  FRIEND_ICONS[name] = AVATAR_ICONS[i % AVATAR_ICONS.length];
+});
 
-      <button onClick={onNavigateToLogMood} className="relative shrink-0 size-[45.962px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 45.9623 45.9623">
-          <circle cx="22.9811" cy="22.9812" fill="#EC9808" r="22.9811" />
-          <rect fill="white" height="3.28302" width="22.9811" x="12.0377" y="21.8867" />
-          <rect fill="white" height="3.28302" transform="rotate(-90 21.8868 36.1133)" width="24.0755" x="21.8868" y="36.1133" />
-        </svg>
-      </button>
-
-      <button onClick={onNavigateToJournal} className="relative shrink-0 size-[45.962px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 45.9623 45.9623">
-          <circle cx="22.9811" cy="22.9812" fill="#EC9808" r="22.9811" />
-          <path d={taskbarSvgPaths.p3d15cc00} fill="white" />
-          <path d={taskbarSvgPaths.p23645bf0} fill="#EC9808" />
-          <path d={taskbarSvgPaths.p1daa7800} fill="#EC9808" />
-        </svg>
-      </button>
-
-      <div className="relative shrink-0 size-[45.962px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 45.9623 45.9623">
-          <circle cx="22.9811" cy="22.9811" fill="#A2A652" r="22.9811" />
-        </svg>
-        <div className="absolute top-[3.28px] left-[4.38px] size-[36.936px]">
-          <svg className="block size-full" fill="none" viewBox="0 0 36.9364 40.4903">
-            <rect fill="black" height="15.7752" rx="7" width="30.4873" x="3.38765" y="14.198" />
-            <path d={taskbarSvgPaths.p20215b00} fill="#8C704E" />
-            <path d={taskbarSvgPaths.p3eecb280} fill="#D8C59D" />
-            <path d={taskbarSvgPaths.p2eda2680} fill="black" />
-            <path d={taskbarSvgPaths.pb939980} fill="black" />
-            <path d={taskbarSvgPaths.p2c11ca00} fill="#5B4A36" />
-            <path d={taskbarSvgPaths.p689fb00} fill="#726058" />
-            <ellipse cx="12.7031" cy="19.0178" fill="black" rx="0.846869" ry="1.3146" />
-            <ellipse cx="24.5593" cy="19.0178" fill="black" rx="0.846869" ry="1.3146" />
-            <path d={taskbarSvgPaths.p2ff23380} fill="black" />
-            <rect fill="#D8C59D" height="3.5056" width="5.08121" x="16.0907" y="24.7151" />
-            <path d={taskbarSvgPaths.p15c3ed70} fill="#A71515" />
-            <rect fill="#726058" height="2.6292" width="1.69374" x="13.55" y="29.9736" />
-            <rect fill="#726058" height="2.6292" width="1.69374" x="22.0187" y="29.9736" />
-            <rect fill="#726058" height="7.88761" width="15.2436" x="11.0095" y="32.6027" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-interface AddFriendWithSearchProps {
-  onContinue?: () => void;
-  onBack?: () => void;
+interface AddFriendsScreenProps {
+  onContinue: (selectedFriends: string[]) => void;
+  onBack: () => void;
   onNavigateToHome?: () => void;
   onNavigateToJournal?: () => void;
   onNavigateToLogMood?: () => void;
   onNavigateToFriends?: () => void;
+  onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
-export default function AddFriendWithSearch({
+export default function AddFriendsScreen({
   onContinue,
   onBack,
-  onNavigateToHome = () => {},
-  onNavigateToJournal = () => {},
-  onNavigateToLogMood = () => {},
-  onNavigateToFriends = () => {},
-}: AddFriendWithSearchProps) {
-  const [searchText, setSearchText] = useState("");
-  const [notification, setNotification] = useState<string | null>(null);
+  onNavigateToHome,
+  onNavigateToJournal,
+  onNavigateToLogMood,
+  onNavigateToFriends,
+  onNavigateToProfile,
+  userAvatar,
+}: AddFriendsScreenProps) {
+  const [requests, setRequests] = useState(INITIAL_REQUESTS);
+  const [searchText, setSearchText] = useState('');
   const [sentRequests, setSentRequests] = useState<Set<string>>(new Set());
+  const [toast, setToast] = useState<string | null>(null);
 
-  const filteredFriends = FRIENDS_LIST.filter(friend =>
-    friend.toLowerCase().includes(searchText.toLowerCase())
-  );
-
-  const handleSendRequest = (friend: string) => {
-    setSentRequests(prev => new Set(prev).add(friend));
-    setNotification("Friend request sent!");
-    setTimeout(() => setNotification(null), 2500);
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2500);
   };
 
+  const handleDecline = (id: string) => {
+    setRequests(prev => prev.filter(r => r.id !== id));
+  };
+
+  const handleAccept = (id: string, username: string) => {
+    setRequests(prev => prev.filter(r => r.id !== id));
+    showToast(`You are now friends with ${username}!`);
+  };
+
+  const handleSendRequest = (username: string) => {
+    setSentRequests(prev => new Set(prev).add(username));
+    showToast('Friend request sent!');
+  };
+
+  const filteredFriends = FRIENDS_LIST.filter(f =>
+    f.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
-    <div className="relative size-full bg-[#f3efd4]">
+    <div className="relative size-full bg-[#f3efd4] overflow-hidden">
 
-      {/* TEST */}
-      <div className="absolute top-0 left-0 z-[9999] bg-red-500 text-white p-2">
-        add friend with search
-      </div>
-
-      {/* Notification toast */}
-      {notification && (
+      {/* Toast */}
+      {toast && (
         <div
-          className="absolute top-[60px] left-1/2 z-[9999] bg-[#394648] text-white px-6 py-3 rounded-[10px] text-[16px]"
-          style={{ transform: "translateX(-50%)", fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}
+          className="absolute top-[16px] left-[16px] right-[16px] z-[9999] bg-[#394648] text-white px-6 py-3 rounded-[10px] text-[16px] text-center"
+          style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}
         >
-          {notification}
+          {toast}
         </div>
       )}
 
-      {searchText.length === 0 ? (
-        <EmptySearch />
-      ) : (
-        <>
-          {/* Taskbar background */}
-          <div className="absolute bg-[#bac15b] h-[72px] left-0 top-[780px] w-[393px] z-40" />
+      {/* Scrollable content */}
+      <div className="absolute top-0 left-0 w-full bottom-[72px] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+        <div className="px-[20px] pt-[24px] pb-[20px]">
 
-          {/* Header */}
-          <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[84px] opacity-77 text-[#394648] text-[24px] top-[96px] whitespace-nowrap">Add Friend</p>
-
-          <div className="absolute flex h-[1.994px] items-center justify-center left-[28.5px] top-[88.5px] w-[331.994px]">
-            <div className="flex-none rotate-[-0.34deg]">
-              <div className="h-0 relative w-[332px]">
-                <div className="absolute inset-[-0.5px_-0.15%]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 333 1">
-                    <path d="M0.5 0.5H332.5" stroke="black" strokeLinecap="round" strokeOpacity="0.3" />
-                  </svg>
-                </div>
+          {/* Friend Requests */}
+          {requests.length > 0 && (
+            <>
+              <p className="text-[24px] text-[#394648] mb-[14px]"
+                style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}>
+                Friend Requests
+              </p>
+              <div className="flex flex-col gap-[10px] mb-[24px]">
+                {requests.map((req) => (
+                  <div key={req.id} className="flex items-center bg-[#EBE4B3] rounded-[10px] px-[12px] py-[8px]">
+                    <div className="relative shrink-0 w-[52px] h-[52px] mr-[14px] bg-[#B1AE68] rounded-[8px] overflow-hidden">
+                      <img
+                        src={req.icon}
+                        alt="avatar"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <p className="flex-1 text-[18px] text-[#394648]"
+                      style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}>
+                      {req.username}
+                    </p>
+                    <button
+                      onClick={() => handleDecline(req.id)}
+                      className="w-[38px] h-[38px] rounded-full bg-[#C0392B] flex items-center justify-center mr-[8px] shrink-0"
+                    >
+                      <svg viewBox="0 0 24 24" className="w-[20px] h-[20px]" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => handleAccept(req.id, req.username)}
+                      className="w-[38px] h-[38px] rounded-full bg-[#5f905a] flex items-center justify-center shrink-0"
+                    >
+                      <svg viewBox="0 0 24 24" className="w-[20px] h-[20px]" fill="none">
+                        <path d="M5 12L10 17L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
               </div>
-            </div>
+            </>
+          )}
+
+          {/* Divider */}
+          <div className="w-full h-[1px] bg-black opacity-20 mb-[20px]" />
+
+          {/* Add Friend */}
+          <p className="text-[24px] text-[#394648] mb-[14px]"
+            style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}>
+            Add Friend
+          </p>
+
+          <div className="relative mb-[16px]">
+            <input
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="search for friends"
+              className="w-full h-[52px] bg-[#EBE4B3] rounded-[8px] px-[16px] pr-[48px] text-[18px] text-[#394648] outline-none placeholder:text-[#646d68]"
+              style={{ fontFamily: '"Cabin Condensed", sans-serif' }}
+            />
+            <svg className="absolute right-[14px] top-1/2 -translate-y-1/2 w-[22px] h-[22px]" fill="none" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" stroke="#EC9808" strokeWidth="2" />
+              <path d="M16.5 16.5L21 21" stroke="#EC9808" strokeWidth="2" strokeLinecap="round" />
+            </svg>
           </div>
 
-          <p className="-translate-x-1/2 absolute font-['Cabin_Condensed:Bold',sans-serif] h-[29px] leading-[normal] left-[106.5px] text-[#646d68] text-[24px] top-[54px] w-[143px]">Friend Requests</p>
-
-          {/* Friend list */}
-          {filteredFriends.map((friend, index) => {
-            const topPosition = 195 + (index * 67);
-            const alreadySent = sentRequests.has(friend);
-            return (
-              <div
-                key={friend}
-                className="absolute left-[35px] flex items-center"
-                style={{ top: `${topPosition}px` }}
-              >
-                <div className="relative">
-                  <div className="absolute bg-[#5f905a] h-[53.948px] left-0 rounded-[6px] top-0 w-[52px] z-10" />
-                  <div className="absolute h-[48.872px] left-[4.81px] top-[5.08px] w-[42px] z-20">
-                    <FriendAvatar />
+          {/* Search results */}
+          {searchText.length > 0 && (
+            <div className="flex flex-col gap-[10px]">
+              {filteredFriends.map((friend) => {
+                const sent = sentRequests.has(friend);
+                return (
+                  <div key={friend} className={`flex items-center rounded-[10px] px-[12px] py-[8px] bg-[#EBE4B3]`}>
+                    <div className="relative shrink-0 w-[52px] h-[52px] mr-[14px] rounded-[8px] overflow-hidden"
+                      style={{ backgroundColor: '#B1AE68' }}>
+                      <img
+                        src={FRIEND_ICONS[friend]}
+                        alt="avatar"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <p className="flex-1 text-[18px] text-[#394648]"
+                      style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}>
+                      {friend}
+                    </p>
+                    <button
+                      onClick={() => !sent && handleSendRequest(friend)}
+                      disabled={sent}
+                      className="px-[12px] py-[4px] rounded-[6px] text-[14px] shrink-0"
+                      style={{
+                        fontFamily: '"Cabin Condensed", sans-serif',
+                        fontWeight: 700,
+                        backgroundColor: sent ? '#a0a0a0' : '#EC9808',
+                        color: 'white',
+                      }}
+                    >
+                      {sent ? 'sent ✓' : 'send request'}
+                    </button>
                   </div>
-                  <p className="absolute font-['Cabin_Condensed:Bold',sans-serif] leading-[normal] left-[65px] text-[#394648] text-[20px] top-[15px] z-10 w-[180px] text-left">
-                    {friend}
-                  </p>
-                  <div className="w-[260px] h-[53.948px] opacity-0" />
-                </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
 
-                <button
-                  onClick={() => handleSendRequest(friend)}
-                  disabled={alreadySent}
-                  className="-ml-2 px-1 py-0 rounded-[6px] text-white text-[14px] shrink-0"
-                  style={{
-                    fontFamily: '"Cabin Condensed", sans-serif',
-                    fontWeight: 700,
-                    backgroundColor: alreadySent ? '#a0a0a0' : '#EC9808',
-                  }}
-                >
-                  {alreadySent ? "sent ✓" : "send request"}
-                </button>
-              </div>
-            );
-          })}
-        </>
-      )}
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        className="absolute left-[26px] bottom-[85px] z-20 bg-[#f0a500] text-white px-3 py-1 flex items-center gap-2 rounded-[6px]"
+        style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}
+      >
+        ← back
+      </button>
 
-      {/* Taskbar background — always visible */}
-      <div className="absolute bg-[#bac15b] h-[72px] left-0 top-[780px] w-[393px] z-40" />
-
-      {/* Taskbar — always visible */}
-      <Taskbar
-        onNavigateToHome={onNavigateToHome}
-        onNavigateToJournal={onNavigateToJournal}
-        onNavigateToLogMood={onNavigateToLogMood}
-        onNavigateToFriends={onNavigateToFriends}
-      />
-
-{/* Back button */}
-{searchText.length > 0 && (
-  <div className="absolute left-[35px] top-[740px] z-50">
-    <button
-      onClick={onBack}
-      className="bg-[#f0a500] text-white px-3 py-1 flex items-center gap-2 rounded-[6px]"
-      style={{ fontFamily: '"Cabin Condensed", sans-serif', fontWeight: 700 }}
-    >
-      ← back
-    </button>
-  </div>
-)}
-
-      {/* Search input */}
-      <input
-        type="text"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        placeholder="search for friends"
-        className="absolute left-[28px] top-[130px] w-[338px] h-[55px] bg-[#EBE4B3] rounded-[6px] px-[20px] font-['Cabin_Condensed:Bold',sans-serif] text-[20px] text-[#394648] outline-none placeholder:text-[#646d68] placeholder:opacity-59 z-50"
-      />
+      {/* Global taskbar */}
+      <div className="absolute bottom-0 left-0 w-full h-[72px] z-30">
+        <SharedTaskbar
+          onNavigateToHome={onNavigateToHome}
+          onNavigateToJournal={onNavigateToJournal}
+          onNavigateToLogMood={onNavigateToLogMood}
+          onNavigateToFriends={onNavigateToFriends}
+          onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
+        />
+      </div>
     </div>
   );
 }

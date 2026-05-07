@@ -9,6 +9,7 @@ interface FriendsScreenProps {
   onNavigateToAddFriends: () => void;
   onNavigateToReminders: (selectedFriends: string[]) => void;
   onNavigateToProfile?: () => void;
+  userAvatar?: string;
 }
 
 export default function FriendsScreen({
@@ -18,6 +19,7 @@ export default function FriendsScreen({
   onNavigateToAddFriends,
   onNavigateToReminders,
   onNavigateToProfile,
+  userAvatar,
 }: FriendsScreenProps) {
   const [selectedFriend, setSelectedFriend] = useState<string | null>(null);
 
@@ -80,6 +82,7 @@ export default function FriendsScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToJournal={onNavigateToJournal}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>

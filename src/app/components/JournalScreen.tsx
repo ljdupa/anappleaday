@@ -17,6 +17,7 @@ interface JournalScreenProps {
   onCreateEntry: () => void;
   entries: JournalEntry[];
   onEditEntry: (id: string, title: string, content: string, mood: string) => void;
+  userAvatar?: string;
 }
 
 const getMoodApple = (mood: string) => {
@@ -55,6 +56,7 @@ export default function JournalScreen({
   onCreateEntry,
   entries,
   onEditEntry,
+  userAvatar,
 }: JournalScreenProps) {
   const now = new Date();
   const [selectedMonth, setSelectedMonth] = useState(now.getMonth());
@@ -162,16 +164,14 @@ export default function JournalScreen({
     );
   }
 
-  // Main journal list — matches Figma
+  // Main journal list
   return (
     <div className="relative size-full bg-[#a5ab4e]" style={{ fontFamily: '"Cabin Condensed", sans-serif' }}>
 
-      {/* Title */}
       <p className="absolute left-[20px] top-[52px] text-white text-[32px]" style={{ fontWeight: 700 }}>
         My Journal
       </p>
 
-      {/* Month pills */}
       <div
         className="absolute left-0 top-[100px] w-full h-[48px] flex gap-[8px] items-center px-[16px] z-20 overflow-x-auto"
         style={{ scrollbarWidth: 'none' }}
@@ -193,10 +193,8 @@ export default function JournalScreen({
         ))}
       </div>
 
-      {/* Divider */}
       <div className="absolute left-[16px] right-[16px] top-[154px] h-[1.5px] bg-black opacity-20 z-20" />
 
-      {/* Year pills */}
       <div
         className="absolute left-0 top-[160px] w-full h-[40px] flex gap-[8px] items-center px-[16px] z-20 overflow-x-auto"
         style={{ scrollbarWidth: 'none' }}
@@ -218,12 +216,10 @@ export default function JournalScreen({
         ))}
       </div>
 
-      {/* Month + Year label */}
       <p className="absolute left-[20px] top-[208px] text-white text-[18px] z-20" style={{ fontWeight: 700 }}>
         {MONTHS[selectedMonth]} {selectedYear}
       </p>
 
-      {/* Entry list */}
       <div
         className="absolute left-[16px] right-[16px] top-[236px] z-20 overflow-y-auto"
         style={{ bottom: '80px', scrollbarWidth: 'none' }}
@@ -258,7 +254,6 @@ export default function JournalScreen({
         )}
       </div>
 
-      {/* Taskbar */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-[72px] z-50">
         <SharedTaskbar
           onNavigateToHome={onNavigateToHome}
@@ -266,6 +261,7 @@ export default function JournalScreen({
           onNavigateToLogMood={onNavigateToLogMood}
           onNavigateToJournal={() => {}}
           onNavigateToProfile={onNavigateToProfile}
+          userAvatar={userAvatar}
         />
       </div>
     </div>
